@@ -1,6 +1,6 @@
 # vue3-vite-elementPlus-template
 
-This template should help get you started developing with Vue 3 in Vite.
+这是一个vue3+vite4+elementPlus+tailwindcss的模板工程
 
 ## Recommended IDE Setup
 
