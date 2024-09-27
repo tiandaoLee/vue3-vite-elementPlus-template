@@ -1,30 +1,25 @@
-<!--
- * @Descripttion: 
- * @Version: 1.0.0
- * @Author: Li Yong
- * @Date: 2024-09-25 16:56:53
- * @LastEditors: Li Yong
- * @LastEditTime: 2024-09-25 17:02:37
--->
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import { useSystemLocaleStore } from '@/stores/systemLocale.js'
+const systemLocaleStore = useSystemLocaleStore()
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <el-config-provider size="small" :z-index="3000" :locale="systemLocaleStore.locale">
+    <header>
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <div class="wrapper">
+        <HelloWorld msg="You did it!" />
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <RouterView />
+  </el-config-provider>
 </template>
 
 <style scoped>
