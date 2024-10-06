@@ -1,11 +1,15 @@
 import { defineStore } from 'pinia'
 export const useInnerSystemStore = defineStore('innerSystem', () => {
   const innerSystem = ref({
-    loaded: true
+    loaded: true,
+    pageLoading: true
   })
-  function refreshPage(flag) {
+  const refreshPage = (flag) => {
     innerSystem.value.loaded = flag
   }
+  const setPageLoading = (flag) => {
+    innerSystem.value.pageLoading = flag
+  }
 
-  return { innerSystem, refreshPage }
+  return { innerSystem, refreshPage, setPageLoading }
 })

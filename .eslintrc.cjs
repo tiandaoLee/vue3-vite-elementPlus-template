@@ -19,5 +19,8 @@ module.exports = {
         ignores: ['Panel', 'panel']
       }
     ]
+  },
+  globals: {
+    process: true
   }
 }
