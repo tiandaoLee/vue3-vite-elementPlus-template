@@ -16,6 +16,20 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/real',
+      name: 'real',
+      component: () => import('@/components/layout/ControlLayout.vue'),
+      redirect: '/real/index',
+      children: [
+        {
+          path: 'index',
+          name: 'index',
+          meta: { useTemplate: true },
+          component: () => import('@/views/real/index.vue')
+        }
+      ]
     }
   ]
 })

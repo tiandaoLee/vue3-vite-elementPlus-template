@@ -13,12 +13,34 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     AutoImport({
-      resolvers: [ElementPlusResolver()]
+      // 目标文件中导入的组件自动引入
+      include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
+      // 引入的组件
+      imports: ['vue', 'vue-router'],
+      // 解析器
+      resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
+      eslintrc: {
+        enabled: false,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true
+      }
     }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [
+        ElementPlusResolver({
+          importStyle: 'sass'
+        })
+      ]
     })
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/styles/index.scss" as *;`,
+        api: 'modern-compiler'
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

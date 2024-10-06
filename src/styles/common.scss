@@ -1,0 +1,11 @@
+// 美化滚动条
+.beautiful-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 26px;
+    border-radius: 3px;
+    background-color: var(--el-fill-color-dark);
+  }
+}

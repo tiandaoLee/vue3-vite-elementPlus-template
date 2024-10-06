@@ -14,6 +14,7 @@ const systemLocaleStore = useSystemLocaleStore()
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/real">RealPage</RouterLink>
         </nav>
       </div>
     </header>
