@@ -14,6 +14,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log('🚀 ~ router.beforeEach ~ to:', to)
   const { userHasLogin } = useUserStore()
   // 非登录态
   if (!userHasLogin) {
@@ -64,5 +65,18 @@ router.afterEach(() => {
 // 导出路由实例
 export const setupRouter = (app) => {
   app.use(router)
+}
+
+export const clearRouter = () => {
+  const { systemMenuList, setSystemConfig } = useSystemConfigStore()
+  // 清空路由
+  systemMenuList.forEach((route) => {
+    if (route.meta && route.meta.isMenu) {
+      console.log('🚀 ~ systemMenuList.forEach ~ route:', route)
+      router.removeRoute(route.fullPath)
+    }
+  })
+  // 清空store数据
+  setSystemConfig({ menuList: [] })
 }
 export default router

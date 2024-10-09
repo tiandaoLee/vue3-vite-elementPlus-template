@@ -21,14 +21,14 @@ function filterAsyncRouter(asyncRouterMap, _ = false, type = false, prefPath = '
       // noCache: !route.keepAlive,
       showBread: route.showBread,
       useTemplate: route.useTemplate,
-      hideMenu: route.hideMenu,
+      isMenu: route.isMenu,
       newFlag: route.newFlag
     }
     // 路由地址转首字母大写驼峰，作为路由名称，适配keepAlive
     // route.name = toCamelCase(route.path, true);
-    route.name = route.path
     route.hidden = !route.visible
     route.fullPath = (prefPath ? `${prefPath}/${route.path}` : route.path).replace(/\/+/g, '/')
+    route.name = route.fullPath
     // 处理 component 属性
     if (route.children) {
       // 父节点
@@ -92,7 +92,6 @@ export const generateRoutes = () => {
     // 向后端请求路由数据
     const rdata = JSON.parse(JSON.stringify(route))
     const rewriteRoutes = filterAsyncRouter([...rdata], false, true)
-    // rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true });
     // 重新设置所有路由的重定向地址
     rewriteRoutes.forEach((item) => {
       if (!item.children || !item.children.length) {
@@ -102,6 +101,8 @@ export const generateRoutes = () => {
     })
     const [firstRoute] = rewriteRoutes
     rewriteRoutes.push({ path: '/', redirect: firstRoute.redirect, hidden: true })
+    // 404路由（动态路由的时候才添加，以免，找不到路由时会跳转到404）
+    rewriteRoutes.push({ path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/404' })
     resolve(rewriteRoutes)
   })
 }

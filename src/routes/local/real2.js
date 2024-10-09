@@ -2,28 +2,28 @@ export default [
   {
     children: [
       {
-        component: 'real/index',
+        component: 'real2/index',
         icon: 'system',
-        id: 2,
+        id: 4,
         keepAlive: false,
-        name: '测试页面',
-        parentId: 1,
+        name: '测试页面2',
+        parentId: 3,
         path: 'index',
         showBread: false,
         useTemplate: true,
         visible: false,
         children: null,
-        isMenu: false
+        isMenu: true
       }
     ],
     component: null,
     icon: 'system',
-    id: 1,
+    id: 3,
     keepAlive: false,
-    name: '测试页面',
+    name: '测试页面3',
     showBread: false,
     parentId: 0,
-    path: '/real',
+    path: '/fake',
     visible: true,
     isMenu: true
   }
