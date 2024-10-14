@@ -75,6 +75,9 @@ export const clearRouter = () => {
       console.log('🚀 ~ systemMenuList.forEach ~ route:', route)
       router.removeRoute(route.fullPath)
     }
+    if (route.path === '/:pathMatch(.*)*') {
+      router.removeRoute('not-found')
+    }
   })
   // 清空store数据
   setSystemConfig({ menuList: [] })
